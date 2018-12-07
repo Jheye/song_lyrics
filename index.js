@@ -10,6 +10,16 @@ function displaySearchData(data) {
 
 function watchSubmit() {
   //your code here
+  $('.js-search-form').submit(event => {
+    event.preventDefault();
+    const queryTarget = $(event.currentTarget).find('.js-query');
+    const query = queryTarget.val(); //value is text typed in input box
+    queryTarget.val(query);
+    $("main").prop('hidden', false)
+    getDataFromApi(query, displayMealSearchData);
+    scrollToMealResults();
+  });
 }
+
 
 $(watchSubmit);
